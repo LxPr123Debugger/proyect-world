@@ -1,10 +1,10 @@
 <?php
-// Conexión a MariaDB
+// Conexión a la base de datos
 $conexion = new mysqli("127.0.0.1", "root", "", "world");
 
 if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
-// Esto es para que las tildes se vean bien
+// Ajuste para tildes y caracteres especiales
 $conexion->set_charset("utf8mb4");
 ?>
