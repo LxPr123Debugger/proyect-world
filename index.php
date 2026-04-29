@@ -23,7 +23,7 @@
                     <tbody>
                         <?php
                         // Consulta a la tabla 'country'
-                        $res = $conexion->query("SELECT code, name, population FROM country LIMIT 15");
+                        $res = $conexion->query("SELECT code, name, population FROM country");
                         while($f = $res->fetch_assoc()): ?>
                         <tr>
                             <td><?php echo $f['code']; ?></td>
