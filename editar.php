@@ -1,21 +1,30 @@
 <?php 
 include("conexion.php"); 
+
+// Verificar si existe el ID para evitar errores
+if(!isset($_GET['id'])){
+    header("Location: index.php");
+    exit();
+}
+
 $id = $_GET['id'];
 
-// Si se presiona el botón Guardar
 if(isset($_POST['update'])) {
     $nueva_pob = $_POST['poblacion'];
+    // Es mejor usar comillas para el valor si la columna acepta strings, 
+    // aunque siendo número funciona así.
     $sql = "UPDATE country SET population = $nueva_pob WHERE code = '$id'";
     
     if($conexion->query($sql)) {
         header("Location: index.php");
+        exit(); // Siempre usa exit después de un header Location
     } else {
         $error = $conexion->error;
     }
 }
 
-// Obtener datos del país actual
-$pais = $conexion->query("SELECT * FROM country WHERE code = '$id'")->fetch_assoc();
+$res = $conexion->query("SELECT * FROM country WHERE code = '$id'");
+$pais = $res->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="es">
